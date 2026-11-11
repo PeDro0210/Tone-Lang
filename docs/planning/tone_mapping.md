@@ -6,7 +6,6 @@ As far I've been looking at it, a tone is a bit of a complex structure, but will
 
 - Depending on the numbers thrown by this to fields will do a map to an instruction.
   - Hz
-- Duration: Will start taking a 2 sec span for each instruction mapping.
 
 ## Overall Mapping
 
@@ -36,4 +35,5 @@ Mapping for each note:
 - G4 -> Jump bracket \[ (~392 Hz)
 - A4 -> Jump bracket \] (~440 Hz)
 - B4 -> Showing value in ascii 256 (~493 Hz)
+- C5 -> Space between lexemes
 
