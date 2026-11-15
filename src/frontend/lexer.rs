@@ -1,15 +1,21 @@
+use std::iter::Peekable;
+
 use crate::frontend::{FrontendError, Token, parsing::SrcCodeIter};
 
 pub struct Lexer {
-    src_code_iter: SrcCodeIter,
+    src_code_iter: Peekable<SrcCodeIter>,
 }
 
 impl Lexer {
+    /// Initialize lexer struct
     pub fn new(src_code_iter: SrcCodeIter) -> Self {
-        Lexer { src_code_iter }
+        Lexer {
+            src_code_iter: src_code_iter.peekable(),
+        }
     }
-    pub fn get_tkn(self) -> Result<Token, FrontendError> {
-        if let Some(lexeme) = self.src_code_iter.peekable().peek() {
+    /// get's the actual token for the lexeme corresponding
+    pub fn get_tkn(&mut self) -> Result<Token, FrontendError> {
+        if let Some(lexeme) = self.src_code_iter.peek() {
             return match lexeme {
                 261 => Ok(Token::IncrementPointer),
                 294 => Ok(Token::DecrementPointer),
@@ -23,6 +29,7 @@ impl Lexer {
         }
         Err(FrontendError::SrcCodeIndexOutOfBounds)
     }
+    /// get's the next token for the lexeme corresponding
     pub fn get_next_tkn(&mut self) -> Result<Token, FrontendError> {
         loop {
             if let Some(lexeme) = self.src_code_iter.next() {
@@ -37,6 +44,7 @@ impl Lexer {
                     _ => Err(FrontendError::NotRecognizedLexeme(lexeme)),
                 };
             }
+            return Err(FrontendError::SrcCodeIndexOutOfBounds);
         }
     }
 }

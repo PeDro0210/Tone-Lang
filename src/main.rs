@@ -3,7 +3,7 @@ use std::fs::File;
 use clap::Parser;
 use tone_lang::{
     Args,
-    frontend::{lexer::Lexer, parsing::parse_mp3_to_frecuency_array},
+    frontend::{FrontendError, Token, lexer::Lexer, parsing::parse_mp3_to_frecuency_array},
 };
 
 fn main() {
@@ -20,4 +20,8 @@ fn main() {
     let args = Args::parse();
 
     let mut lexer = Lexer::new(parse_mp3_to_frecuency_array(&args.src_code_path));
+
+    let mut tkn = lexer.get_tkn();
+
+    loop {}
 }

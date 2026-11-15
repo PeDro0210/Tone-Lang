@@ -4,7 +4,7 @@ pub mod parsing;
 
 pub const LEXEME_SPACE_FZ: u32 = 522;
 
-#[derive(Debug)]
+#[derive(Debug, PartialEq)]
 pub enum Token {
     IncrementPointer,
     DecrementPointer,
@@ -15,7 +15,7 @@ pub enum Token {
     PrintVal,
 }
 
-#[derive(Debug)]
+#[derive(Debug, PartialEq)]
 pub enum FrontendError {
     NotRecognizedLexeme(u32),
     SrcCodeIndexOutOfBounds,
