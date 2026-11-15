@@ -1,7 +1,10 @@
 use std::fs::File;
 
 use clap::Parser;
-use tone_lang::{Args, frontend::parsing::audio_parsing::parse_mp3_to_frecuency_array};
+use tone_lang::{
+    Args,
+    frontend::{lexer::Lexer, parsing::parse_mp3_to_frecuency_array},
+};
 
 fn main() {
     // need something for first grabing the audio notes and then passing it to the lexer (the syntax
@@ -16,7 +19,5 @@ fn main() {
 
     let args = Args::parse();
 
-    let frecuencies = parse_mp3_to_frecuency_array(&args.src_code_path);
-
-    println!("{frecuencies:?}");
+    let mut lexer = Lexer::new(parse_mp3_to_frecuency_array(&args.src_code_path));
 }

@@ -36,4 +36,3 @@ Mapping for each note:
 - A4 -> Jump bracket \] (~440 Hz)
 - B4 -> Showing value in ascii 256 (~493 Hz)
 - C5 -> Space between lexemes (~522 Hz)
-
